@@ -1,0 +1,53 @@
+<div class="navigation-bar clearfix">
+    <div class="nav-main">
+        <a href="" ng-click="close()" class="nav-elm pull-left" id="f-back">
+            <i class="fa fa-chevron-left"></i> Back
+        </a>
+        <span class="filter-date nav-elm">October 12, 2015</span>
+    </div>
+</div>
+
+<div class="overview filters-wrap">
+    <ul class="nav nav-tabs">
+        <li role="presentation" class="active"><a href="" cnt="#filters-date">Date</a></li>
+        <li role="presentation"><a href="" cnt="#filters-media">Media</a></li>
+        <li role="presentation"><a href="" cnt="#filters-geo">Geo</a></li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="filters-date">
+			<div class="filter-tags">
+				<ul class="regular-grid">
+					<li><a href="" class="btn btn-default" ng-class="{active: activeDateButton == 1}" ng-click="getLastDate('week', 1); activeDateButton = 1;">Last week</a><li>
+					<li><a href="" class="btn btn-default" ng-class="{active: activeDateButton == 2}" ng-click="getLastDate('month', 1); activeDateButton = 2;">Last month</a></li>
+					<li><a href="" class="btn btn-default" ng-class="{active: activeDateButton == 3}" ng-click="getLastDate('month', 3); activeDateButton = 3;">Last 3 month</a></li>
+					<li><a href="" class="btn btn-default" ng-class="{active: activeDateButton == 4}" ng-click="getLastDate('month', 6); activeDateButton = 4;">Last 6 month</a></li>
+					<li><a href="" class="btn btn-default" ng-class="{active: activeDateButton == 5}" ng-click="getLastDate('year', 1); activeDateButton = 5;">Last year</a></li>
+					<li><a href="" class="btn btn-default" ng-class="{active: activeDateButton == 6}" ng-click="getLastDate('alltime'); activeDateButton = 6;">All time</a></li>
+				</ul>
+			</div>
+            <div class="date-picker">
+                <div class="date-start">Start Date <span class="pull-right">{{dateStart | date : 'd MMM yyyy'}}</span></div>
+                <div class="days"><span>{{days}}</span>Days</div>
+                <div class="date-end">End Date <span class="pull-right">{{dateEnd | date : 'd MMM yyyy'}}</span></div>
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="filters-media">
+			<div class="filter-tags">
+				<ul class="regular-grid">
+					<li><a href="" class="btn btn-default" ng-click="setAllSizes();" ng-class="{'active': allSizes}">All sizes</a></li>
+					<li ng-repeat="(key, value) in sizes"><a href="" class="btn btn-default" ng-class="{'active': value}" ng-click="sizes[key] = !value; checkAllSizes();">{{key}}</a></li>
+				</ul>
+			</div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="filters-geo">
+            <div class="filter-tags">
+				<ul class="regular-grid">
+					<li><a href="" class="btn btn-default" ng-click="setAllCountries();" ng-class="{'active': allCountries}">All countries</a></li>
+					<li ng-repeat="(key, value) in geo"><a href="" class="btn btn-default" ng-class="{'active': value}" ng-click="geo[key] = !value; checkAllCountries();">{{key}}</a></li>
+				</ul>
+			</div>
+        </div>
+    </div>
+</div>

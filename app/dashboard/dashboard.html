@@ -1,0 +1,16 @@
+<ul id="dashboard">
+
+    <li class="metric" ng-repeat="(k, v) in dashboard.data">
+        <div class="title">{{v.name | uppercase}}</div>
+        <a href="#/details/{{k}}">
+            <div class="data" ng-class="{up: v.growth.relative > 0, down: v.growth.relative < 0}">
+                <b class="index">{{v.value}}</b>
+                <span class="change-percent"><i class="fa fa-caret-right"></i> {{Math.abs(v.growth.relative)}}%</span>
+                <small class="change-curr">{{v.growth.absolute}}</small>
+            </div>
+            <div class="line-chart">
+                <span class="col" ng-repeat="(day, value) in v.annual"><b style="height: {{value}}%"></b> <span>{{day}}</span></span>
+            </div>
+        </a>
+    </li>
+</ul>

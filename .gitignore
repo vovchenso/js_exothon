@@ -1,0 +1,8 @@
+app/bower_components/
+node_modules/
+nbproject
+logs/*
+!.gitkeep
+tmp
+.DS_Store
+.idea

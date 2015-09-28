@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="expopub" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="expopub" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="expopub" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="expopub" class="no-js"> <!--<![endif]-->
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>Expopub App</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link href="img/favicon.png" rel="shortcut icon" type="image/x-icon"/>
+		<link href="img/apple-touch-icon.png" rel="apple-touch-icon" />
+		<link href="img/apple-touch-icon-76x76.png" rel="apple-touch-icon" sizes="76x76" />
+		<link href="img/apple-touch-icon-120x120.png" rel="apple-touch-icon" sizes="120x120" />
+		<link href="img/apple-touch-icon-152x152.png" rel="apple-touch-icon" sizes="152x152" />
+		<link href="img/apple-touch-icon-180x180.png" rel="apple-touch-icon" sizes="180x180" />
+		<link href="img/icon-hires.png" rel="icon" sizes="192x192" />
+		<link href="img/icon-normal.png" rel="icon" sizes="128x128" />
+
+		<link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+		<link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
+		<link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
+		<link rel="stylesheet" href="bower_components/angular-datepicker/dist/index.css">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+
+		<script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+
+		<link rel="stylesheet" href="styles/theme.css">
+	</head>
+	<body ng-class="{'scroll-off': showFilters, 'state-chart-drag': chartTouch, 'detailed-view-layout': state == 'details'}">
+		<nav ng-class="{'navigation-bar': true, 'state-filters': showFilters}" ng-hide="(state == 'login' || state == 'earnings')">
+
+			<div class="nav-main">
+				<a href="" class="nav-elm pull-left" id="f-mmenu" ng-hide="state == 'details'">
+					<i class="fa fa-bars"></i>
+				</a>
+
+				<a href="#/dashboard" class="nav-elm pull-left" id="f-back" ng-hide="state == 'dashboard'">
+					<i class="fa fa-chevron-left"></i> Back
+				</a>
+
+				<div class="dropdown nav-elm" ng-hide="state == 'dashboard'">
+					<a class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+						<span class="current-value">{{types[type]}}</span>
+						<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
+						<li ng-repeat="(k, v) in types" ng-class="{active: type == k}"><a href="#/details/{{k}}">{{v}}</a></li>
+					</ul>
+				</div>
+				<a href="" ng-click="showFilters = true" class="nav-elm" ng-hide="state == 'details'">
+					<i class="fa fa-filter"></i>
+				</a>
+				<span class="filter-date nav-elm" style="display: none;">October 12, 2015</span>
+
+			</div>
+
+			<div class="current-filter">
+				<div class="filter-sitename">
+					xe.android.com
+				</div>
+				<div class="filter-date">
+					07/21/2015 - 07/21/2016
+				</div>
+			</div>
+
+			<div id="filters" ng-controller="FiltersController" ng-include src="'filters/filters.html'">
+
+			</div>
+		</nav>
+
+		<div class="overview" ng-view></div>
+
+		<!-- In production use:
+		<script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+		-->
+		<script src="bower_components/jquery/dist/jquery.js"></script>
+		<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+		<script src= "bower_components/angular/angular.js" ></script>
+		<script src="bower_components/angular-route/angular-route.js"></script>
+		<script src="bower_components/angular-moment/angular-moment.js"></script>
+		<script src="bower_components/moment/moment.js"></script>
+		<script src="bower_components/angular-datepicker/dist/index.js"></script>
+		<script src="app.js"></script>
+		<script src="components/params/params.js"></script>
+        <script src="login/login.js"></script>
+		<script src="earnings/earnings.js"></script>
+		<script src="dashboard/dashboard.js"></script>
+		<script src="filters/filters.js"></script>
+		<script src="details/details.js"></script>
+        <script src="details/model/stage.js"></script>
+        <script src="details/model/layer.js"></script>
+		<script>
+			$(function () {
+				//console.log('it seems working :3');
+				$('a[title]').tooltip();
+
+				//collapse sections
+				$(document).on('click', '.nav-tabs > li> a', function (e) {
+					$('.nav-tabs > li, .tab-pane').removeClass('active');
+					$(this).parent('li').addClass('active');
+					$($(this).attr('cnt')).addClass('active');
+					e.preventDefault();
+					e.stopPropagation();
+				});
+
+				$(document).on('click', '.regular-grid.integrations', function () {
+					$('.fullscreen-layout.integration').css('display', 'block');
+				});
+
+				$(document).on('click', '.section-header', function () {
+					$(this).closest('section.c-section').toggleClass('section-collapsed');
+				});
+			});
+		</script>
+	</body>
+</html>

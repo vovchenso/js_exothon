@@ -1,0 +1,40 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.content {
+    margin: 0 auto;
+    width: 600px;
+}
+
+.stage {
+    position: relative;
+    height: 300px;
+    width: 600px;
+}
+.stage > * {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+.stage #layer {
+    z-index: 99;
+    position: relative;
+}
+
+.stage #line {
+    position: absolute;
+    width: 1px;
+    height: 100%;
+    background-color: #00f;
+}
+
+.stage #point {
+    position: absolute;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    border: 1px solid #f00;
+}
